@@ -226,8 +226,8 @@ class CalculatorEngine:
                 operation_type="square_root"
             )
     
-    def trigonometric(self, number: Union[float, str], function: str, 
-                     unit: str = "radians") -> Dict[str, Any]:
+    def trigonometric(self, number: Union[float, str], function: str,
+                     unit: str = "degrees") -> Dict[str, Any]:
         """
         Calcula funções trigonométricas (seno, cosseno, tangente).
         
@@ -259,24 +259,24 @@ class CalculatorEngine:
                 error_message="Unidade inválida. Use 'radians' ou 'degrees'",
                 operation_type="trigonometric"
             )
-        
+
         try:
             n = float(number)
-            
+
             # Converter graus para radianos se necessário
             if unit == "degrees":
                 n = math.radians(n)
-            
+
             if function == 'sin':
                 result = math.sin(n)
             elif function == 'cos':
                 result = math.cos(n)
             elif function == 'tan':
                 result = math.tan(n)
-            
+
             # Arredondar para evitar problemas de precisão
             result = round(result, 10)
-            
+
             unit_symbol = "°" if unit == "degrees" else "rad"
             return self._create_response(
                 True,

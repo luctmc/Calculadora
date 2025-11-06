@@ -468,12 +468,11 @@ class CalculatorGUI:
         """Processar clique nos botões trigonométricos"""
         current_value = self.display_var.get()
         try:
-            # Por padrão, usar radianos
             result = self.controller.execute_operation(
-                "trigonometric", 
-                number=float(current_value), 
-                function=function, 
-                unit="radians"
+                "trigonometric",
+                number=float(current_value),
+                function=function,
+                unit="degrees"
             )
             if result.startswith("Erro"):
                 self._show_error_feedback(result)
@@ -490,8 +489,8 @@ class CalculatorGUI:
         """Processar clique no botão de porcentagem"""
         current_value = self.display_var.get()
         try:
-            # Para porcentagem simples, calcular X% (X/100)
-            result = self.controller.execute_operation("percentage", number=100, percent=float(current_value))
+            percent_value = float(current_value.replace(',', '.'))
+            result = self.controller.execute_operation("percentage", percent=percent_value)
             if result.startswith("Erro"):
                 self._show_error_feedback(result)
                 self.update_display("Erro")
