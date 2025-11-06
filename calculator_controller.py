@@ -284,20 +284,30 @@ class CalculatorController:
             operation_str = ""
             
             if operation_type == "percentage":
-                number = kwargs.get("number", self.state.current_value)
-                percent = kwargs.get("percent", "")
+                number = kwargs.get("number")
+                percent = kwargs.get("percent")
+
+                if number is None:
+                    if self.state.previous_value:
+                        number = self.state.previous_value
+                    else:
+                        number = self.state.current_value
+
+                if percent is None:
+                    percent = self.state.current_value
+
                 result = self.engine.percentage(number, percent)
                 operation_str = f"{percent}% de {number}"
-                
+
             elif operation_type == "square_root":
                 number = kwargs.get("number", self.state.current_value)
                 result = self.engine.square_root(number)
                 operation_str = f"√{number}"
-                
+
             elif operation_type == "trigonometric":
                 number = kwargs.get("number", self.state.current_value)
                 function = kwargs.get("function", "sin")
-                unit = kwargs.get("unit", "radians")
+                unit = kwargs.get("unit", "degrees")
                 result = self.engine.trigonometric(number, function, unit)
                 unit_symbol = "°" if unit == "degrees" else "rad"
                 operation_str = f"{function}({number}{unit_symbol})"
@@ -333,7 +343,11 @@ class CalculatorController:
                     self.state.current_value = str(result["result"])
                     self.state.display_value = formatted_result
                     self.state.waiting_for_operand = True
-                    
+
+                    if operation_type == "percentage":
+                        self.state.previous_value = ""
+                        self.state.operator = ""
+
                     # Adicionar ao histórico
                     self._add_to_history(operation_str, formatted_result, True)
                     
