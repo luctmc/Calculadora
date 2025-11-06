@@ -1,6 +1,6 @@
-# 🧮 Calculadora Moderna
+# 🧮 Calculadora
 
-Uma calculadora moderna e interativa desenvolvida em Python com interface gráfica clean e intuitiva, otimizada para proporções de tablet/mobile. Apresenta separação clara entre front-end e back-end, suportando operações matemáticas básicas, funções científicas avançadas e cálculos geométricos.
+Uma calculadora interativa desenvolvida em Python com interface gráfica clean e intuitiva, otimizada para proporções de tablet/mobile. Apresenta separação clara entre front-end e back-end, suportando operações matemáticas básicas, funções científicas avançadas e cálculos geométricos.
 
 ## 👥 Projeto Desenvolvido pelo Grupo
 
@@ -317,4 +317,5 @@ Este projeto demonstra a aplicação de conceitos de programação funcional e o
 ---
 
 **Desenvolvido com ❤️ usando Python e Tkinter**  
+
 **Projeto Acadêmico - Programação Funcional - 2024**
